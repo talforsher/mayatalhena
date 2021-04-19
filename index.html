@@ -70,8 +70,24 @@
     </style>
   </head>
 
-  <body onresize="size()"><img id="img" src="img144.webp" alt="the background of the website, and the main content">
-    <div id="buttons" style="width: 1686px; height: 3212px;">
+  <body onresize="size()"><img id="img" src="img133.webp" alt="the background of the website, and the main content">
+    <div id="buttons" style="width: 1686px; height: 3161px;">
+      <div class="hey" style="left: 7.59193%; top: 67.2572%; width: 87.0107%; padding-top: 8.77412%;" onclick="window.open(&quot;https://docs.google.com/forms/d/e/1FAIpQLSe2N8WnENseCnPlRGAQnZh6APNfEuX6w-ROrixVTZ5YuGtdTw/viewform?usp=sf_link&quot;)">
+
+
+
+
+      </div>
+      <div class="hey" style="left: 7.65125%; top: 74.0272%; width: 87.0107%; padding-top: 8.77412%;" onclick="window.open(&quot;https://waze.com/ul/hsv9h9k7cw&quot;)">
+
+
+
+      </div>
+      <div class="hey" style="left: 7.76987%; top: 80.4492%; width: 87.0107%; padding-top: 8.77412%;" onclick="window.open(&quot;https://docs.google.com/forms/d/e/1FAIpQLSfmwKnorQDxdq1dPkLM_h6qp5KwQYIGMa1ACxYxrgHaz2z8nA/viewform?usp=sf_link&quot;)">
+
+
+
+      </div>
     </div>
     <script id="indexScript">
       function size() {
@@ -123,6 +139,35 @@
           window.postMessage({
             id,
             token: '0.17116741232134736',
+            methodName,
+            methodArgs
+          }, 'http://localhost:3000');
+          return new Promise(resolve => {
+            const listener = window.addEventListener('message', event => {
+              const data = event.data;
+              if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+              window.removeEventListener('message', listener);
+              resolve(data.result);
+            });
+          });
+        }
+      };
+    </script>
+
+
+    <script>
+      mendeleyWebImporter = {
+        downloadPdfs(t) {
+          return this._call('downloadPdfs', [t]);
+        },
+        open() {
+          return this._call('open', []);
+        },
+        _call(methodName, methodArgs) {
+          const id = Math.random();
+          window.postMessage({
+            id,
+            token: '0.872813256525607',
             methodName,
             methodArgs
           }, 'http://localhost:3000');
